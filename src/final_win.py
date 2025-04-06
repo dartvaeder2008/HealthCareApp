@@ -1,0 +1,1 @@
+class FinalWin(QWidget):
