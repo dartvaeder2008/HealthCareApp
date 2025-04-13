@@ -1,9 +1,11 @@
-
+from inst import*
+from PyQt5.QtWidgets import *
+from second_win import *
 
 class MainWin(QWidget):
     def __init__(self):
         super().__init__()
-        self.set_apper() # встановлює, як виглядатиме вікно
+        self.set_appear() # встановлює, як виглядатиме вікно
         self.initUI() # створюємо та налаштовуємо графічкі елементи
         self.connects() # встановлює зв'язки між елементами
         self.show() # зробити вікно видимим / старт
@@ -11,17 +13,21 @@ class MainWin(QWidget):
     def set_appear(self):
         self.setWindowTitle(txt_title)
         self.resize(win_width, win_height)
-        self.move(win_X, win_y)
+        self.move(win_x, win_y)
         
     def initUI(self):
-        self.hello_text = QLabel(txt_hello)
-        self.instruction = QLabel(txt_instruction)
-        self.button = QPushButton(txt_next)
+        self.hello_text = QLabel(self.hello_text)
+        self.instruction = QLabel(self.instruction)
+        self.button = QPushButton(self.button)
         self.layout = QVBoxLayout()
-        self.hello_text.addWidget(self.layout)
-        self.instruction.addWidget(self.layout)
-        self.button.addWigdet(self.layout)
+
         
     def connects(self):
-        pass
-        
+        self.btn_next.connect(self. next_click)
+
+    def next_click(self):
+        self.hide()
+
+app = QApplication([])
+mw = MainWin()
+app.exec_()
